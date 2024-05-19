@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/example.dir/Program.cpp.o -o example  libex.a libex1.a librealworld.a 
+/usr/bin/c++ CMakeFiles/example.dir/Program.cpp.o -o example  libex.a libex1.a libpoints.a libreal.a 

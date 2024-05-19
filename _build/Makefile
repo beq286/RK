@@ -65,6 +65,26 @@ CMAKE_BINARY_DIR = /home/beq/beq286/RK/_build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
+	/usr/bin/cpack --config ./CPackConfig.cmake
+.PHONY : package
+
+# Special rule for the target package
+package/fast: package
+.PHONY : package/fast
+
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/beq/beq286/RK/_build/CPackSourceConfig.cmake
+.PHONY : package_source
+
+# Special rule for the target package_source
+package_source/fast: package_source
+.PHONY : package_source/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -188,17 +208,30 @@ ex1/fast:
 .PHONY : ex1/fast
 
 #=============================================================================
-# Target rules for targets named realworld
+# Target rules for targets named points
 
 # Build rule for target.
-realworld: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 realworld
-.PHONY : realworld
+points: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 points
+.PHONY : points
 
 # fast build rule for target.
-realworld/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/realworld.dir/build.make CMakeFiles/realworld.dir/build
-.PHONY : realworld/fast
+points/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/points.dir/build.make CMakeFiles/points.dir/build
+.PHONY : points/fast
+
+#=============================================================================
+# Target rules for targets named real
+
+# Build rule for target.
+real: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 real
+.PHONY : real
+
+# fast build rule for target.
+real/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/real.dir/build.make CMakeFiles/real.dir/build
+.PHONY : real/fast
 
 #=============================================================================
 # Target rules for targets named example
@@ -261,6 +294,30 @@ ConceptualExample02.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/ConceptualExample02.cpp.s
 .PHONY : ConceptualExample02.cpp.s
 
+Points.o: Points.cpp.o
+.PHONY : Points.o
+
+# target to build an object file
+Points.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/points.dir/build.make CMakeFiles/points.dir/Points.cpp.o
+.PHONY : Points.cpp.o
+
+Points.i: Points.cpp.i
+.PHONY : Points.i
+
+# target to preprocess a source file
+Points.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/points.dir/build.make CMakeFiles/points.dir/Points.cpp.i
+.PHONY : Points.cpp.i
+
+Points.s: Points.cpp.s
+.PHONY : Points.s
+
+# target to generate assembly for a file
+Points.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/points.dir/build.make CMakeFiles/points.dir/Points.cpp.s
+.PHONY : Points.cpp.s
+
 Program.o: Program.cpp.o
 .PHONY : Program.o
 
@@ -290,7 +347,7 @@ RealWorldFactoryMethod.o: RealWorldFactoryMethod.cpp.o
 
 # target to build an object file
 RealWorldFactoryMethod.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/realworld.dir/build.make CMakeFiles/realworld.dir/RealWorldFactoryMethod.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/real.dir/build.make CMakeFiles/real.dir/RealWorldFactoryMethod.cpp.o
 .PHONY : RealWorldFactoryMethod.cpp.o
 
 RealWorldFactoryMethod.i: RealWorldFactoryMethod.cpp.i
@@ -298,7 +355,7 @@ RealWorldFactoryMethod.i: RealWorldFactoryMethod.cpp.i
 
 # target to preprocess a source file
 RealWorldFactoryMethod.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/realworld.dir/build.make CMakeFiles/realworld.dir/RealWorldFactoryMethod.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/real.dir/build.make CMakeFiles/real.dir/RealWorldFactoryMethod.cpp.i
 .PHONY : RealWorldFactoryMethod.cpp.i
 
 RealWorldFactoryMethod.s: RealWorldFactoryMethod.cpp.s
@@ -306,7 +363,7 @@ RealWorldFactoryMethod.s: RealWorldFactoryMethod.cpp.s
 
 # target to generate assembly for a file
 RealWorldFactoryMethod.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/realworld.dir/build.make CMakeFiles/realworld.dir/RealWorldFactoryMethod.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/real.dir/build.make CMakeFiles/real.dir/RealWorldFactoryMethod.cpp.s
 .PHONY : RealWorldFactoryMethod.cpp.s
 
 # Help Target
@@ -320,17 +377,23 @@ help:
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
+	@echo "... package"
+	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... ex"
 	@echo "... ex1"
 	@echo "... example"
-	@echo "... realworld"
+	@echo "... points"
+	@echo "... real"
 	@echo "... ConceptualExample01.o"
 	@echo "... ConceptualExample01.i"
 	@echo "... ConceptualExample01.s"
 	@echo "... ConceptualExample02.o"
 	@echo "... ConceptualExample02.i"
 	@echo "... ConceptualExample02.s"
+	@echo "... Points.o"
+	@echo "... Points.i"
+	@echo "... Points.s"
 	@echo "... Program.o"
 	@echo "... Program.i"
 	@echo "... Program.s"

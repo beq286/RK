@@ -1,7 +1,10 @@
 /home/beq/beq286/RK/_build/CMakeFiles/ex.dir
 /home/beq/beq286/RK/_build/CMakeFiles/ex1.dir
-/home/beq/beq286/RK/_build/CMakeFiles/realworld.dir
+/home/beq/beq286/RK/_build/CMakeFiles/points.dir
+/home/beq/beq286/RK/_build/CMakeFiles/real.dir
 /home/beq/beq286/RK/_build/CMakeFiles/example.dir
+/home/beq/beq286/RK/_build/CMakeFiles/package.dir
+/home/beq/beq286/RK/_build/CMakeFiles/package_source.dir
 /home/beq/beq286/RK/_build/CMakeFiles/edit_cache.dir
 /home/beq/beq286/RK/_build/CMakeFiles/rebuild_cache.dir
 /home/beq/beq286/RK/_build/CMakeFiles/list_install_components.dir
