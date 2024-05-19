@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/beq/beq286/RK/_build/CMakeFiles /home/beq/beq286/RK/_build//CMakeFiles/progress.marks
@@ -117,24 +162,87 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ex2
+# Target rules for targets named ex
 
 # Build rule for target.
-ex2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ex2
-.PHONY : ex2
+ex: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ex
+.PHONY : ex
 
 # fast build rule for target.
-ex2/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex2.dir/build.make CMakeFiles/ex2.dir/build
-.PHONY : ex2/fast
+ex/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/build
+.PHONY : ex/fast
+
+#=============================================================================
+# Target rules for targets named ex1
+
+# Build rule for target.
+ex1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ex1
+.PHONY : ex1
+
+# fast build rule for target.
+ex1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/build
+.PHONY : ex1/fast
+
+#=============================================================================
+# Target rules for targets named realworld
+
+# Build rule for target.
+realworld: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 realworld
+.PHONY : realworld
+
+# fast build rule for target.
+realworld/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/realworld.dir/build.make CMakeFiles/realworld.dir/build
+.PHONY : realworld/fast
+
+#=============================================================================
+# Target rules for targets named example
+
+# Build rule for target.
+example: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example
+.PHONY : example
+
+# fast build rule for target.
+example/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/build
+.PHONY : example/fast
+
+ConceptualExample01.o: ConceptualExample01.cpp.o
+.PHONY : ConceptualExample01.o
+
+# target to build an object file
+ConceptualExample01.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/ConceptualExample01.cpp.o
+.PHONY : ConceptualExample01.cpp.o
+
+ConceptualExample01.i: ConceptualExample01.cpp.i
+.PHONY : ConceptualExample01.i
+
+# target to preprocess a source file
+ConceptualExample01.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/ConceptualExample01.cpp.i
+.PHONY : ConceptualExample01.cpp.i
+
+ConceptualExample01.s: ConceptualExample01.cpp.s
+.PHONY : ConceptualExample01.s
+
+# target to generate assembly for a file
+ConceptualExample01.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex.dir/build.make CMakeFiles/ex.dir/ConceptualExample01.cpp.s
+.PHONY : ConceptualExample01.cpp.s
 
 ConceptualExample02.o: ConceptualExample02.cpp.o
 .PHONY : ConceptualExample02.o
 
 # target to build an object file
 ConceptualExample02.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex2.dir/build.make CMakeFiles/ex2.dir/ConceptualExample02.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/ConceptualExample02.cpp.o
 .PHONY : ConceptualExample02.cpp.o
 
 ConceptualExample02.i: ConceptualExample02.cpp.i
@@ -142,7 +250,7 @@ ConceptualExample02.i: ConceptualExample02.cpp.i
 
 # target to preprocess a source file
 ConceptualExample02.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex2.dir/build.make CMakeFiles/ex2.dir/ConceptualExample02.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/ConceptualExample02.cpp.i
 .PHONY : ConceptualExample02.cpp.i
 
 ConceptualExample02.s: ConceptualExample02.cpp.s
@@ -150,8 +258,56 @@ ConceptualExample02.s: ConceptualExample02.cpp.s
 
 # target to generate assembly for a file
 ConceptualExample02.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex2.dir/build.make CMakeFiles/ex2.dir/ConceptualExample02.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/ConceptualExample02.cpp.s
 .PHONY : ConceptualExample02.cpp.s
+
+Program.o: Program.cpp.o
+.PHONY : Program.o
+
+# target to build an object file
+Program.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/Program.cpp.o
+.PHONY : Program.cpp.o
+
+Program.i: Program.cpp.i
+.PHONY : Program.i
+
+# target to preprocess a source file
+Program.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/Program.cpp.i
+.PHONY : Program.cpp.i
+
+Program.s: Program.cpp.s
+.PHONY : Program.s
+
+# target to generate assembly for a file
+Program.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/Program.cpp.s
+.PHONY : Program.cpp.s
+
+RealWorldFactoryMethod.o: RealWorldFactoryMethod.cpp.o
+.PHONY : RealWorldFactoryMethod.o
+
+# target to build an object file
+RealWorldFactoryMethod.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/realworld.dir/build.make CMakeFiles/realworld.dir/RealWorldFactoryMethod.cpp.o
+.PHONY : RealWorldFactoryMethod.cpp.o
+
+RealWorldFactoryMethod.i: RealWorldFactoryMethod.cpp.i
+.PHONY : RealWorldFactoryMethod.i
+
+# target to preprocess a source file
+RealWorldFactoryMethod.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/realworld.dir/build.make CMakeFiles/realworld.dir/RealWorldFactoryMethod.cpp.i
+.PHONY : RealWorldFactoryMethod.cpp.i
+
+RealWorldFactoryMethod.s: RealWorldFactoryMethod.cpp.s
+.PHONY : RealWorldFactoryMethod.s
+
+# target to generate assembly for a file
+RealWorldFactoryMethod.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/realworld.dir/build.make CMakeFiles/realworld.dir/RealWorldFactoryMethod.cpp.s
+.PHONY : RealWorldFactoryMethod.cpp.s
 
 # Help Target
 help:
@@ -160,11 +316,27 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... ex2"
+	@echo "... ex"
+	@echo "... ex1"
+	@echo "... example"
+	@echo "... realworld"
+	@echo "... ConceptualExample01.o"
+	@echo "... ConceptualExample01.i"
+	@echo "... ConceptualExample01.s"
 	@echo "... ConceptualExample02.o"
 	@echo "... ConceptualExample02.i"
 	@echo "... ConceptualExample02.s"
+	@echo "... Program.o"
+	@echo "... Program.i"
+	@echo "... Program.s"
+	@echo "... RealWorldFactoryMethod.o"
+	@echo "... RealWorldFactoryMethod.i"
+	@echo "... RealWorldFactoryMethod.s"
 .PHONY : help
 
 
