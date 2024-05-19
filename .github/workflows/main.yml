@@ -1,5 +1,4 @@
 name: CPack
-run-name: ${{ github.actor }} is running Prototype
 on: [push]
 
 jobs:
@@ -19,7 +18,7 @@ jobs:
       run: cmake --build ${{github.workspace}}/.build
 
     - name: Run programm.cpp
-      run: ${{github.workspace}}/.build/prototype
+      run: ${{github.workspace}}/.build/ConceptualExample
 
     - name: Run tests
       run: ${{github.workspace}}/.build/check
