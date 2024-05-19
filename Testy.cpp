@@ -8,7 +8,6 @@ TEST(ConcreteCreator1, example) {
 
     // Проверяем, что продукт является экземпляром ConcreteProduct1
     ASSERT_TRUE(dynamic_cast<ConcreteProduct1*>(product) != nullptr);
-
     delete product;
     delete creator;
 }
