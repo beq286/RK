@@ -1,21 +1,25 @@
 name: CPack
+run-name: ${{ github.actor }} is running Prototype
+on: [push]
 
-on:
- push:
-  branches: [main]
- pull_request:
-  branches: [main]
+jobs:
+  prototype_cont:
+    runs-on: ubuntu-latest
 
-jobs: 
- build_Linux:
+    steps:
+    - uses: actions/checkout@v4
 
-  runs-on: ubuntu-latest
+    - name: Adding gtest
+      run: git clone https://github.com/google/googletest.git third-party/gtest -b release-1.11.0
 
-  steps:
-  - uses: actions/checkout@v4
+    - name: Config with tests
+      run: cmake -B ${{github.workspace}}/.build -DBUILD_TESTS=ON
 
-  - name: Configure example
-    run: cmake ${{github.workspace}} -B ${{github.workspace}}/build
+    - name: Build
+      run: cmake --build ${{github.workspace}}/.build
 
-  - name: Build example
-    run: cmake --build ${{github.workspace}}/build
+    - name: Run programm.cpp
+      run: ${{github.workspace}}/.build/prototype
+
+    - name: Run tests
+      run: ${{github.workspace}}/.build/check
