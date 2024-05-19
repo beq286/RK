@@ -1,0 +1,3 @@
+/home/beq/beq286/RK/_build/CMakeFiles/ex2.dir
+/home/beq/beq286/RK/_build/CMakeFiles/edit_cache.dir
+/home/beq/beq286/RK/_build/CMakeFiles/rebuild_cache.dir

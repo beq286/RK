@@ -1,0 +1,2 @@
+/usr/bin/ar qc libex.a CMakeFiles/ex.dir/ConceptualExample01.cpp.o
+/usr/bin/ranlib libex.a
