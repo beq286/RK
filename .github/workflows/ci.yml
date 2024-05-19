@@ -31,7 +31,7 @@ jobs:
         with:
           tag: v1.0.3
           artifacts: "build/*.deb,build/*.tar.gz,build/*.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
       - name: Artifacts
         uses: actions/upload-artifact@v4
         with:
