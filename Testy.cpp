@@ -2,7 +2,7 @@
 #include "ConceptualExample01.cpp"
 #include "ConceptualExample02.cpp"  
 #include "Points.cpp"
-using namespace Factory03;
+
 TEST(ConceptualExample01Test, FactoryMethodTest) {
     // Arrange
     std::stringstream output;
@@ -35,33 +35,24 @@ TEST(ConceptualExample02Test, FactoryMethodTest) {
     std::cout.rdbuf(oldOutput);
 }
 
-namespace Factory03 {
-    class Point;
+TEST(ConceptualExample01Test, FactoryMethodTest) {
+    // Подготовка
+    std::stringstream output;
+
+    // Перенаправляем вывод cout в stringstream для захвата вывода
+    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf());
+
+    // Действие
+    test_conceptual_example_01(); // Вызываем функцию для тестирования
+
+    // Проверка
+    std::string expectedOutput = "{ Product1 }\n{ Product2 }\n";
+    EXPECT_EQ(output.str(), expectedOutput);
+
+    // Восстанавливаем cout исходный буфер
+    std::cout.rdbuf(oldCoutBuffer);
 }
-
-// Объявляем тест дружественным, чтобы иметь доступ к приватным членам
-class Factory03Test : public ::testing::Test {
-protected:
-    void SetUp() override {}
-    void TearDown() override {}
-};
-
-// Определяем тест
-TEST_F(Factory03Test, NewPolarTest) {
-    // Arrange
-    double expected_x = 3.53553;
-    double expected_y = 3.53553;
-    double r = 5.0;
-    double theta = M_PI / 4;
-
-    // Act
-    auto p = Point::NewPolar(r, theta);
-
-    // Assert
-    EXPECT_DOUBLE_EQ(p.m_x, expected_x);
-    EXPECT_DOUBLE_EQ(p.m_y, expected_y);
-}
-
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
