@@ -46,8 +46,8 @@ TEST(Factory03Test, NewPolarTest) {
     auto p = Point::NewPolar(r, theta);
 
     // Assert
-    EXPECT_DOUBLE_EQ(p.x(), expected_x);
-    EXPECT_DOUBLE_EQ(p.y(), expected_y);
+    EXPECT_DOUBLE_EQ(p.m_x, expected_x);
+    EXPECT_DOUBLE_EQ(p.m_y, expected_y);
 }
 
 
