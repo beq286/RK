@@ -16,9 +16,9 @@ TEST(BuilderTest, ConceptualExample02) {
 }
 
 TEST(BuilderTest, RealWorldFactoryMethod) {
-    ASSERT_NO_THROW(test_layout_manager_example());
+    ASSERT_NO_THROW(test_real_world_factory_method());
 }
 
 TEST(BuilderTest, Points) {
-    ASSERT_NO_THROW(test_person_builder_example());
+    ASSERT_NO_THROW(test_points());
 }
