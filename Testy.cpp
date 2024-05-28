@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <gmock/gmock.h>
 #include "ConceptualExample01.cpp"
 #include "ConceptualExample02.cpp"  
 #include "RealWorldFactoryMethod.cpp"
@@ -38,28 +37,12 @@ TEST(ConceptualExample02Test, FactoryMethodTest) {
 
 namespace RealWorldFactoryMethod {
 
-    class MockLEDTVFactory : public LEDTVFactory {
-    public:
-        MOCK_METHOD(float, shippingCharge, (), (const, override));
-        MOCK_METHOD(float, productionCharge, (), (const, override));
-    };
-
-    class MockOledTVFactory : public OledTVFactory {
-    public:
-        MOCK_METHOD(float, shippingCharge, (), (const, override));
-        MOCK_METHOD(float, productionCharge, (), (const, override));
-    };
-
     TEST(RealWorldFactoryMethodTest, TestTotalCharge) {
-        MockLEDTVFactory ledFactory;
-        EXPECT_CALL(ledFactory, shippingCharge()).WillOnce(testing::Return(1000.0F));
-        EXPECT_CALL(ledFactory, productionCharge()).WillOnce(testing::Return(1500.0F));
-        EXPECT_EQ(ledFactory.totalCharge(), 2500.0F);
+        LEDTVFactory ledFactory;
+        EXPECT_FLOAT_EQ(ledFactory.totalCharge(), 2500.0F);
 
-        MockOledTVFactory oledFactory;
-        EXPECT_CALL(oledFactory, shippingCharge()).WillOnce(testing::Return(2000.0F));
-        EXPECT_CALL(oledFactory, productionCharge()).WillOnce(testing::Return(2500.0F));
-        EXPECT_EQ(oledFactory.totalCharge(), 4500.0F);
+        OledTVFactory oledFactory;
+        EXPECT_FLOAT_EQ(oledFactory.totalCharge(), 4500.0F);
     }
 }
 
