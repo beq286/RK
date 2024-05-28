@@ -1,32 +1,23 @@
-name: CPack
+name: test
+run-name: testing
 on:
   push:
-    branches: [main]
+    branches: [ "main" ]
   pull_request:
-    branches: [main]
-
+    branches: [ "main" ]
 jobs:
-  build_packages_Linux:
+  testing:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '20'
-      - name: Config ConceptualExample
-        run: cmake ${{github.workspace}} -B ${{github.workspace}}/build -D PRINT_VERSION=1.0.0
-
-      - name: Build ConceptualExample
-        run: cmake --build ${{github.workspace}}/build
-
-      - name: Build package
-        run: cmake --build ${{github.workspace}}/build --target package
+      - name: load_repository
+        uses: actions/checkout@v4
+      - run: git clone https://github.com/google/googletest third-party/gtest 
+      - name: Build
+        run: cmake -H. -B build && cmake --build build
       - name: Test
-        run: cmake --build build --target Testy && cmake --build build --target Testy -- ARGS=--verbose && build/check
-      - name: Build source package
-        run: cmake --build ${{github.workspace}}/build --target package_source
+        run: cmake --build build --target test && cmake --build build --target test -- ARGS=--verbose && build/check
       - name: Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: example
-          path: build/example
+          path: build/PolicyBasedDesign
