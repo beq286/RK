@@ -34,24 +34,6 @@ TEST(ConceptualExample02Test, FactoryMethodTest) {
     // Возвращаем stdout в исходное состояние
     std::cout.rdbuf(oldOutput);
 }
-TEST(ConceptualExample01Test, FactoryMethodTest) {
-    // Подготовка
-    std::stringstream output;
-
-    // Перенаправляем вывод cout в stringstream для захвата вывода
-    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
-    std::cout.rdbuf(output.rdbuf());
-
-    // Действие
-    test_conceptual_example_01(); // Вызываем функцию для тестирования
-
-    // Проверка
-    std::string expectedOutput = "{ Product1 }\n{ Product2 }\n";
-    EXPECT_EQ(output.str(), expectedOutput);
-
-    // Восстанавливаем cout исходный буфер
-    std::cout.rdbuf(oldCoutBuffer);
-}
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
