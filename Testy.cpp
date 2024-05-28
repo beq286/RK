@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "ConceptualExample01.cpp"
 #include "ConceptualExample02.cpp"  
+#include "Points.cpp"  
 
 TEST(ConceptualExample01Test, FactoryMethodTest) {
     // Arrange
@@ -32,6 +33,42 @@ TEST(ConceptualExample02Test, FactoryMethodTest) {
 
     // Возвращаем stdout в исходное состояние
     std::cout.rdbuf(oldOutput);
+}
+
+TEST(Factory03Test, NewCartesianTest) {
+    auto p = Factory03::Point::NewCartesian(2, 3);
+    ASSERT_DOUBLE_EQ(p.x, 2);
+    ASSERT_DOUBLE_EQ(p.y, 3);
+}
+
+TEST(Factory03Test, NewPolarTest) {
+    auto p = Factory03::Point::NewPolar(5.0, M_PI / 4);
+    ASSERT_NEAR(p.x, 3.53553, 0.00001);
+    ASSERT_NEAR(p.y, 3.53553, 0.00001);
+}
+
+TEST(Factory04Test, NewCartesianTest) {
+    auto p = Factory04::PointFactory::NewCartesian(2, 3);
+    ASSERT_DOUBLE_EQ(p.x, 2);
+    ASSERT_DOUBLE_EQ(p.y, 3);
+}
+
+TEST(Factory04Test, NewPolarTest) {
+    auto p = Factory04::PointFactory::NewPolar(5.0, M_PI / 4);
+    ASSERT_NEAR(p.x, 3.53553, 0.00001);
+    ASSERT_NEAR(p.y, 3.53553, 0.00001);
+}
+
+TEST(Factory05Test, NewCartesianTest) {
+    auto p = Factory05::Point::Factory::NewCartesian(2, 3);
+    ASSERT_DOUBLE_EQ(p.x, 2);
+    ASSERT_DOUBLE_EQ(p.y, 3);
+}
+
+TEST(Factory05Test, NewPolarTest) {
+    auto p = Factory05::Point::Factory::NewPolar(5.0, M_PI / 4);
+    ASSERT_NEAR(p.x, 3.53553, 0.00001);
+    ASSERT_NEAR(p.y, 3.53553, 0.00001);
 }
 
 int main(int argc, char **argv) {
