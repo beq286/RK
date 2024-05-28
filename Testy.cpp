@@ -1,8 +1,7 @@
 #include <gtest/gtest.h>
 #include "ConceptualExample01.cpp"
 #include "ConceptualExample02.cpp"  
-#include "Points.cpp"  
-
+#include "RealWorldFactoryMethod.cpp"
 TEST(ConceptualExample01Test, FactoryMethodTest) {
     // Arrange
     std::stringstream output;
@@ -35,41 +34,19 @@ TEST(ConceptualExample02Test, FactoryMethodTest) {
     std::cout.rdbuf(oldOutput);
 }
 
-TEST(Factory03Test, NewCartesianTest) {
-    auto p = Factory03::Point::NewCartesian(2, 3);
-    ASSERT_DOUBLE_EQ(p.x, 2);
-    ASSERT_DOUBLE_EQ(p.y, 3);
+TEST(TVFactoryTest, CreateLEDTV) {
+    std::shared_ptr<AbstractTVFactory> ledFactory = std::make_shared<LEDTVFactory>();
+    std::shared_ptr<TV> tvPtr = ledFactory->createTV();
+    
+    ASSERT_TRUE(tvPtr != nullptr);
+    ASSERT_EQ(tvPtr->getType(), "LED");
 }
 
-TEST(Factory03Test, NewPolarTest) {
-    auto p = Factory03::Point::NewPolar(5.0, M_PI / 4);
-    ASSERT_NEAR(p.x, 3.53553, 0.00001);
-    ASSERT_NEAR(p.y, 3.53553, 0.00001);
+int main(int argc, char **argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
 
-TEST(Factory04Test, NewCartesianTest) {
-    auto p = Factory04::PointFactory::NewCartesian(2, 3);
-    ASSERT_DOUBLE_EQ(p.x, 2);
-    ASSERT_DOUBLE_EQ(p.y, 3);
-}
-
-TEST(Factory04Test, NewPolarTest) {
-    auto p = Factory04::PointFactory::NewPolar(5.0, M_PI / 4);
-    ASSERT_NEAR(p.x, 3.53553, 0.00001);
-    ASSERT_NEAR(p.y, 3.53553, 0.00001);
-}
-
-TEST(Factory05Test, NewCartesianTest) {
-    auto p = Factory05::Point::Factory::NewCartesian(2, 3);
-    ASSERT_DOUBLE_EQ(p.x, 2);
-    ASSERT_DOUBLE_EQ(p.y, 3);
-}
-
-TEST(Factory05Test, NewPolarTest) {
-    auto p = Factory05::Point::Factory::NewPolar(5.0, M_PI / 4);
-    ASSERT_NEAR(p.x, 3.53553, 0.00001);
-    ASSERT_NEAR(p.y, 3.53553, 0.00001);
-}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
