@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
 #include "ConceptualExample01.cpp"
 #include "ConceptualExample02.cpp"  
-#include "RealWorldFactoryMethod.cpp"
+#include "Points.cpp"
+using namespace Factory03;
 TEST(ConceptualExample01Test, FactoryMethodTest) {
     // Arrange
     std::stringstream output;
@@ -34,13 +35,21 @@ TEST(ConceptualExample02Test, FactoryMethodTest) {
     std::cout.rdbuf(oldOutput);
 }
 
-TEST(TVFactoryTest, CreateLEDTV) {
-    std::shared_ptr<AbstractTVFactory> ledFactory = std::make_shared<LEDTVFactory>();
-    std::shared_ptr<TV> tvPtr = ledFactory->createTV();
-    
-    ASSERT_TRUE(tvPtr != nullptr);
-    ASSERT_EQ(tvPtr->getType(), "LED");
+TEST(Factory03Test, NewPolarTest) {
+    // Arrange
+    double expected_x = 3.53553;
+    double expected_y = 3.53553;
+    double r = 5.0;
+    double theta = M_PI / 4;
+
+    // Act
+    auto p = Point::NewPolar(r, theta);
+
+    // Assert
+    EXPECT_DOUBLE_EQ(p.x(), expected_x);
+    EXPECT_DOUBLE_EQ(p.y(), expected_y);
 }
+
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
