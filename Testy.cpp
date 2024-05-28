@@ -35,7 +35,19 @@ TEST(ConceptualExample02Test, FactoryMethodTest) {
     std::cout.rdbuf(oldOutput);
 }
 
-TEST(Factory03Test, NewPolarTest) {
+namespace Factory03 {
+    class Point;
+}
+
+// Объявляем тест дружественным, чтобы иметь доступ к приватным членам
+class Factory03Test : public ::testing::Test {
+protected:
+    void SetUp() override {}
+    void TearDown() override {}
+};
+
+// Определяем тест
+TEST_F(Factory03Test, NewPolarTest) {
     // Arrange
     double expected_x = 3.53553;
     double expected_y = 3.53553;
