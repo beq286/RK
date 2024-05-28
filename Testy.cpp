@@ -47,11 +47,7 @@ TEST(RealWorldExampleTest, TestLEDTVFactory) {
     testing::internal::CaptureStdout();
     RealWorldFactoryMethod::clientCode02(std::make_shared<RealWorldFactoryMethod::LEDTVFactory>());
     output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, 
-        "My new television receiver costs me 2500\n"
-        "Switched on my LED TV\n"
-        "My new TV is a LED TV device.\n"
-    );
+    EXPECT_EQ(output, "My new television receiver costs me 2500\nSwitched on my LED TV\nMy new TV is a LED TV device.\n");
 }
 
 int main(int argc, char **argv) {
